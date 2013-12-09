@@ -1,9 +1,9 @@
 /**
- * Implementation of Generic Doubly Linked List 
+ * Implementation of Generic Doubly Linked List
  */
 public class GenericDLList<T> implements DoubleLinkList<T> {
 	private DLLNode listStart;
-	
+
 	public GenericDLList(){
 		listStart = null;
 	}
@@ -13,7 +13,7 @@ public class GenericDLList<T> implements DoubleLinkList<T> {
 	public void addElement(T newElement){
 		DLLNode newNode = new DLLNode(newElement);
 		if(listStart == null){
-			listStart = newNode;	
+			listStart = newNode;
 			//leave prevNode and nextNode pointers set to null
 		} else {
 			listStart.addNode(newNode);
@@ -44,12 +44,16 @@ public class GenericDLList<T> implements DoubleLinkList<T> {
 	/**
 	 * Returns the number of nodes in the list
 	 */
-	public int listLength(DLLNode aNode){
-		if(aNode == null){
-			return 0;
-	} else {
-		int result = 1 + listLength(aNode.getNext());
-		return result;
+	public int listLength(){
+		int result = 0;
+		DLLNode focusNode = listStart;
+		if(focusNode != null){
+			result++;
 		}
+		while(focusNode.getNext() != null){
+			result++;
+			focusNode = focusNode.getNext();
+		}
+		return result;
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * A Generic Doubly Linked List 
+ * A Generic Doubly Linked List
  */
 public interface DoubleLinkList<T> {
 	/**
@@ -17,5 +17,5 @@ public interface DoubleLinkList<T> {
 	/**
 	 * Returns the number of nodes in the list
 	 */
-	int listLength(DLLNode aNode);
+	int listLength();
 }
