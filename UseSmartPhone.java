@@ -4,9 +4,11 @@ public class UseSmartPhone {
 		uSP.launch();
 	}
 	public void launch(){
-		SmartPhone myPhone = new SmartPhone("Apple");
-		myPhone.browseWeb("www.bbc.co.uk");
-		System.out.println("Your location is currently: " + myPhone.findPosition());
+		MobilePhone myPhone = new SmartPhone("Apple");
+		//downcasting to SmartPhone so I can use .findPosition() & .browseWeb()
+		SmartPhone dcPhone = (SmartPhone) myPhone;
+		dcPhone.browseWeb("www.bbc.co.uk");
+		System.out.println("Your location is currently: " + dcPhone.findPosition());
 		myPhone.call("0073291");
 		myPhone.ringAlarm("Don't forget your swimming togs");
 		myPhone.playGame("Scrabble");
