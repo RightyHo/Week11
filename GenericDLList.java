@@ -2,7 +2,7 @@
  * Implementation of Generic Doubly Linked List
  */
 public class GenericDLList<T> implements DoubleLinkList<T> {
-	private DLLNode listStart;
+	private DLLNode<T> listStart;
 
 	public GenericDLList(){
 		listStart = null;
@@ -11,7 +11,7 @@ public class GenericDLList<T> implements DoubleLinkList<T> {
 	 * Adds a new element to the list
 	 */
 	public void addElement(T newElement){
-		DLLNode newNode = new DLLNode(newElement);
+		DLLNode<T> newNode = new DLLNode<T>(newElement);
 		if(listStart == null){
 			listStart = newNode;
 			//leave prevNode and nextNode pointers set to null
@@ -24,8 +24,12 @@ public class GenericDLList<T> implements DoubleLinkList<T> {
 	 */
 	public boolean deleteElement(T removeElement){
 		if(listStart.getValue() == removeElement){	//DLLNode uses an alternate test: if(this.value.equals(removeElement))
-			listStart = listStart.getNext();
-			listStart.setPrev(null);				//removing previous pointer to the deleted element
+			if(listStart.getNext() == null){
+				listStart = null;
+			} else {
+				listStart = listStart.getNext();
+				listStart.setPrev(null);				//removing previous pointer to the deleted element
+			}
 			return true;
 		} else {
 			return listStart.getNext().deleteNode(removeElement);
@@ -35,7 +39,7 @@ public class GenericDLList<T> implements DoubleLinkList<T> {
 	 * Prints out list
 	 */
 	public void printList(){
-		DLLNode focusNode = listStart;
+		DLLNode<T> focusNode = listStart;
 		while(focusNode != null){
 			focusNode.printNode();
 			focusNode = focusNode.getNext();
@@ -46,7 +50,7 @@ public class GenericDLList<T> implements DoubleLinkList<T> {
 	 */
 	public int listLength(){
 		int result = 0;
-		DLLNode focusNode = listStart;
+		DLLNode<T> focusNode = listStart;
 		if(focusNode != null){
 			result++;
 		}
